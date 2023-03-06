@@ -1,0 +1,1288 @@
+/* add the fonts  */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--textFamily);
+    scroll-behavior: smooth;
+}
+
+/* variables */
+
+:root {
+    --backgroundBody: hsl(206, 4%, 97%);
+    --backgroundColorOne: #fff;
+    --backgroundColorTwo: #161616;
+    --backgroundColorThree: hsl(240, 23%, 95%);
+    --textColorOne: #1b1a1a;
+    --textColorTwo: #fff;
+    --textFamily: "roboto", sans-serif;
+    --colorRed: rgb(216, 22, 22);
+    --firtsColor: hsl(354, 78%, 60%);
+    --textColorParagrapth: rgb(136, 130, 132);
+    --mainCardsColors: hsl(0, 0%, 90%);
+}
+
+:root{
+    --backgroundBodyBlack : hsl(249, 19%, 14%);
+    --backgroundCards : hsla(246, 16%, 5%);
+    --navbarColor : hsl(246, 16%, 12%);
+    --textColorBlack :hsl(182, 53%, 74%);
+    --navbarShirtColor: hsl(182, 53%, 74%);
+}
+
+.navbar__new-color{
+    color: var(--textColorTwo);
+}
+
+
+
+/* style a scroll */
+::-webkit-scrollbar{
+    width: 8px;
+    background-color: var(--backgroundBody);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--firtsColor);
+    border-radius: 10px;
+}
+
+
+/* end of variables  */
+
+body {
+    width: 100%;
+    background-color: var(--backgroundBody);
+    display: grid;
+    gap: 1rem;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+    scroll-behavior: smooth;
+    
+}       
+
+
+
+/* navbar */
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 99;
+    position: fixed;
+    top: -5px;
+    width: 100%;
+    transition: background-color .5s ease-in-out, padding 0.5s ease-in-out;
+    
+}
+.navbar > div{
+    transition: padding 0.5s ease-in-out
+}
+
+.navbar__logo {
+    display: flex;
+    align-items: center;
+}
+
+.toggle__navbar-background{
+    background-color: var(--backgroundColorOne);
+    
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    transition: background-color .5s ease-in-out, padding 0.5s ease-in-out;
+}
+
+
+
+.toggle__navbar-background > div{
+   padding-top: 7px;
+    transition: padding 0.5s ease-in-out;
+}
+
+.navbar__logo>svg {
+    width: 45px;
+    height: 45px;
+}
+
+
+
+.navbar__logo>svg path {
+    fill: var(--firtsColor);
+}
+
+.logo__color > svg path{
+    fill: var(--textColorBlack);
+}
+
+.navbar__logo p {
+    font-weight: 500;
+}
+
+.navbar__icon {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+   
+}
+
+.navbar__icon > svg path{
+    transition: fill 0.5s ease-in-out;
+}
+
+.shopping {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    cursor: pointer;
+
+}
+
+.shopping > svg path{
+    transition: fill 0.5s ease-in-out;
+}
+
+/* ocultamos el navbar */
+.navbar__nav{
+    display: none;
+}
+
+
+.shopping span {
+    background-color: #1b1a1a;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    color: var(--textColorTwo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -8px;
+    right: -4px;
+    font-size: 0.8rem;
+}
+
+.navbar__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--backgroundColorOne);
+    z-index: 100;
+    transition: right 0.5s ease-in-out;
+
+}
+
+
+.open__menu:hover path {
+    fill: var(--backgroundColorOne);
+    transition: fill 0.3s ease-in-out;
+}
+
+.cursor__pointer{
+    cursor: pointer;
+}
+
+.cursor__pointer svg path{
+    transition: fill 0.5s ease-in-out;
+}
+
+
+.icons__menu {
+
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 0.5rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    transition: right 0.5s ease-in-out;
+}
+
+.close {
+    right: 0;
+    transition: right 0.5s ease-in-out;
+}
+
+
+.icons__shopping {
+    position: relative;
+}
+
+.icons__shopping span {
+    background-color: #1b1a1a;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    color: var(--textColorTwo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -8px;
+    right: -4px;
+    font-size: 0.8rem;
+
+}
+
+.menu__navbar {
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.menu__navbar>ul {
+    list-style: none;
+}
+
+.active {
+    color: var(--firtsColor);
+}
+.new__active{
+    color: var(--textColorBlack);
+}
+.close__menu {
+    cursor: pointer;
+    transform: scale(1.4);
+    transition: transform .05s ease-in-out;
+}
+
+.close__menu:hover {
+    transform: scale(1.6);
+}
+
+
+
+/* working with the header */
+
+header {
+    background-color: var(--backgroundBody);
+    width: 100%;
+    height: 100vh;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+.header__new-color{
+    background-color: var(--backgroundBodyBlack);
+}
+
+.header__home-shirt {
+    height: 60%;
+    width: 100%;
+
+    display: flex;
+    justify-content: right;
+}
+
+
+
+.header__home-shirt>article {
+    background-color: var(--firtsColor);
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+.header__shirt-color > article{
+    background-color: var(--navbarShirtColor);
+}
+
+.header__home-shirt>article img {
+    width: 100%;
+}
+
+.header__body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.header__body h2 {
+    font-size: 2rem;
+}
+
+.header__body p:nth-child(2) {
+    font-weight: 400;
+    color: var(--textColorParagrapth);
+}
+
+.header__body p:nth-child(3) {
+    
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.text__firts-color{
+    color: var(--firtsColor);
+}
+
+.header__body a {
+    text-decoration: none;
+    background-color: var(--backgroundColorTwo);
+    color: var(--textColorTwo);
+    width: max-content;
+    font-weight: 500;
+    padding: 15px 30px;
+}
+
+
+/* working with of body */
+main {
+    margin: 0 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+.main__nav {
+    display: flex;
+    justify-content: center;
+}
+
+.main__nav ul {
+    list-style: none;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.main__nav ul li {
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    overflow: hidden;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.main__nav ul li p {
+    font-weight: 400
+}
+
+.active_nav {
+    
+    background-color: var(--backgroundColorTwo);
+    color: var(--textColorTwo);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+}
+
+
+/* working with of cards */
+.main__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;   
+    background-color: var(--backgroundColorThree);
+    border-radius: 1rem;
+    overflow: hidden;
+
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+.zoom__card{
+    transform: scale(0);
+}
+
+.main__container{
+    display: grid;
+    gap: 2rem;
+    overflow: hidden;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+.card__img{
+    position: relative;
+    
+}
+
+.card__img img {
+
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.card__img img:hover{
+    transform: translateY(-10px);
+}
+
+.card__body {
+    background-color: var(--backgroundColorOne);
+    color: var(--textColorOne);
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    height: 100%;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+   
+}
+
+.card__body button{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: none;
+    top: -25px;
+    right: 25px;
+    background-color: #fff;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+.card__body p:nth-child(2){
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.card__body p:nth-child(2) span{
+    font-size: 0.9rem;
+    color: #8f8989;
+    font-weight: 500;
+}
+
+footer{
+    padding: 4rem 2rem;
+    width: 100%;
+    display: grid;
+    gap: 1.5rem;
+    background-color: var(--backgroundColorThree);
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+
+
+footer article{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+footer article h3{
+    font-size: 1.5rem;
+}
+
+footer article ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer__social ul{
+  
+    display: flex;
+    flex-direction: row;
+   overflow: hidden;
+
+}   
+.footer__social ul li svg{
+    transition: transform 0.5s ease-in-out;
+}
+
+.footer__social ul li:hover svg{
+  
+    transform: scale(1.5);
+   
+}  
+
+
+footer > article:nth-child(5){
+    background-color: var(--firtsColor);
+   padding: 1rem;
+    color: var(--textColorTwo);
+    width: 100%;
+    overflow: hidden;
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+footer > article:nth-child(5) ul{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+footer > article:nth-child(5) ul > li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+}
+
+footer > article:nth-child(5) ul > li{
+    fill: var(--textColorTwo);
+    position: relative;
+}
+
+footer > article:nth-child(5) ul > li > a{
+    text-decoration: none;
+    color: var(--textColorTwo);
+}
+
+
+footer > article:nth-child(5) ul > li::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    bottom: -2px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+}
+footer > article:nth-child(5) ul > li::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    bottom: -2px;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+}
+
+footer > article:nth-child(5) ul > li:hover::before,footer > article:nth-child(5) ul > li:hover::after{
+   transform: scaleX(1);
+}
+
+
+footer > article ul > li::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: var(--firtsColor);
+    bottom: -2px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+}
+footer > article ul > li::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: var(--firtsColor);
+    bottom: -2px;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+}
+
+footer > article ul > li:hover::before,footer > article ul > li:hover::after{
+   transform: scaleX(1);
+}
+
+
+
+
+/* card of shopping */
+.card__of-shopping{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--backgroundColorOne);
+    z-index: 999;
+    align-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    transition: right 0.5s ease-in-out;
+}
+
+.card__shopping-open{
+    right: 0;
+}
+
+.shopping__body{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    padding: 0 3rem;
+    width: 100%;
+    height: 150px;
+    align-content: flex-start;
+    gap: 2rem;
+  
+    
+}
+
+.shopping__body article{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #8f8989;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.shopping__body button{
+    padding: 20px 0;
+    background-color: var(--navbarColor);
+    color: var(--textColorTwo);
+    font-weight: 600;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    border: none;
+    font-size: 1.2rem;
+    
+}
+
+.card__catalogo{
+    width: 100vw;
+    
+    background-color: var(--backgroundColorOne);
+
+    display: grid;
+    grid-template-columns: 1fr 1.7fr;
+    gap: 1rem;
+    padding: 2rem 3rem;
+    padding-bottom: 0;
+}
+
+.card__catalogo article:nth-child(1){
+
+    border: 1px solid var(--firtsColor);
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: var(--backgroundColorThree);
+    
+    height: max-content;
+}
+
+.card__catalogo article:nth-child(2){
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: max-content;
+}
+
+.card__catalogo article:nth-child(2) > p{
+    font-size: 1rem;
+    color: var(--firtsColor);
+    font-weight: 500;
+    height: max-content;
+}
+
+.card__catalogo-button{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--backgroundColorTwo);
+    font-size: 1.2rem;
+}
+
+.card__catalogo-button button{
+    background-color: inherit;
+    border: none;
+    font-size: 2rem;
+}
+
+.card__catalogo-button box-icon{
+    fill: var(--firtsColor);
+}
+
+.card__catalogo article:nth-child(2) p span{
+    font-size: 1rem;
+    color: #8f8989;
+    height: max-content;
+}
+
+.card__catalogo-img  img{
+    width: 100%;
+    
+}
+
+.catalog__close{
+    width: 100%;
+    text-align: end;
+    padding-right: 1rem;
+    font-size: 2rem;
+  cursor: pointer;
+
+}
+
+.shopping__container{
+ 
+    height: calc(100vh - 150px);
+    
+    overflow-y: scroll;
+}
+
+
+@media (min-width : 100px) {
+    main{
+        padding-top: 5rem;
+    }
+}
+
+@media (min-width: 320px){
+    .card__of-shopping{
+      
+        width: 100vw;
+      
+    }     
+     
+     .card__catalogo{
+        padding-top: 1rem;
+         grid-template-columns: 1fr 2fr;
+        
+     }
+
+     .card__catalogo-button{
+         font-size: 1rem;
+     }
+ 
+     .card__catalogo-button button:nth-child(3){
+         font-size: 1rem;
+     }
+    
+     .card__catalogo-button box-icon{
+         transform: scale(0.8);
+     }
+ 
+     .shopping__body{
+         
+         gap: 1rem;
+       
+         height: max-content;
+     }
+     
+     .shopping__body article{
+         
+         font-size: 1rem;
+         font-weight: 500;
+     }
+ 
+     .shopping__body article p:nth-child(1){
+         
+         font-size: 0.8rem;
+         font-weight: 500;
+     }
+ 
+     .shopping__body article p:nth-child(2){
+         
+         font-size: 1.2rem;
+         font-weight: 500;
+     }
+     
+     .shopping__body button{
+         padding: 10px 0;
+         margin-bottom: 0.7rem;
+         font-size: 0.7rem;
+         background-color: var(--backgroundColorTwo);
+         
+     }
+}
+
+@media (min-width : 500px) {
+    
+    .main__container{
+        grid-template-columns: 1fr 1fr;
+
+    }
+    .main__nav{
+        margin-bottom: 2rem;
+    }
+}
+
+@media (min-width : 700px) {
+
+    .card__catalogo article:nth-child(2){
+       gap: 0;
+    }
+    
+    
+    .card__catalogo{
+       padding-top: 1rem;
+        grid-template-columns: 1fr 2.5fr;
+       
+    }
+    .card__of-shopping{
+        width: 60vw;
+    }
+
+    .shopping__container{
+        width: 100%;
+    }
+    .shopping__catalog{
+        width: 100%;
+    }
+    .card__catalogo{
+        width: 100%;
+    }
+    .card__catalogo-button{
+        font-size: 1rem;
+    }
+
+    .card__catalogo-button button:nth-child(3){
+        font-size: 1rem;
+    }
+   
+    .card__catalogo-button box-icon{
+        transform: scale(0.8);
+    }
+
+    .shopping__body{
+        
+        gap: 1rem;
+      
+        height: max-content;
+    }
+    
+    .shopping__body article{
+        
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .shopping__body article p:nth-child(1){
+        
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .shopping__body article p:nth-child(2){
+        
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    
+    .shopping__body button{
+        padding: 10px 0;
+        margin-bottom: 0.7rem;
+        font-size: 0.7rem;
+        background-color: var(--backgroundColorTwo);
+        
+    }
+
+   
+}
+
+@media (min-width : 768px) {
+    main{
+        padding-top: 0;
+    }
+    .open__menu{
+        display: none;
+    }
+    
+    .navbar__nav{
+        display: block;
+    }
+
+    .navbar__nav ul li a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .navbar__nav ul{
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        padding-left: 2rem;
+        font-weight: 600;
+    }
+
+    .navbar__nav ul li{
+        transition: color 0.3s ease-in-out;
+    }
+    
+
+    header{
+        display: flex;
+        flex-direction: column;
+        flex-direction: row-reverse;
+        width: 100vw;
+    }
+
+    .header__home-shirt{
+        width: 60%;
+        height: 430px;
+       
+    }
+
+    .header__home-shirt article{
+        width: 100%;
+    }
+    .header__body{
+        padding: 3rem 35px;
+    }
+    .header__body h2{
+        font-size: 3rem;
+    }
+
+    .main__nav{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        
+    }
+    .main__nav ul{
+       
+        display: flex;
+        gap: 1rem;
+       
+    }
+   
+    .main__container{
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+    footer{
+        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        
+    }
+}
+
+
+
+@media (min-width: 790px){
+    
+    .main__container{
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    header{
+        width: 90vw;
+        
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header__home-shirt > article{
+        height: 770px;
+        width: 100%;
+      
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .main__container{
+        width: 80%;
+    }
+    .header__body{
+        padding-top: 14rem;
+       
+    }
+
+    .navbar{
+        padding: 0.8rem 4rem;
+    }
+}
+
+@media (min-width : 1024px) {
+
+    .main__container{
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    header{
+        width: 80vw;
+        
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header__home-shirt > article{
+        height: 523px;
+        width: 80%;
+      
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .main__container{
+        width: 80%;
+    }
+    .header__body{
+        padding-top: 8rem;
+    }
+
+    .navbar{
+        padding: 0.8rem 10rem;
+    }
+
+    .card__of-shopping{
+      
+        width: 40vw;
+       
+    }
+}
+
+@media (min-width: 1440px){
+    
+    .main__container{
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    header{
+        width: 70vw;
+        
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header__home-shirt > article{
+        height: 770px;
+        width: 90%;
+      
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .main__container{
+        width: 80%;
+    }
+    .header__body{
+        padding-top: 14rem;
+       
+    }
+
+    .navbar{
+        padding: 0.8rem 15rem;
+    }
+}
+
+/* dark mode  */
+
+body.dark{
+    color: var(--textColorTwo);
+    background-color: var(--backgroundBodyBlack);
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+
+
+body.dark > .toggle__navbar-background{
+    background-color: var(--navbarColor);
+    color: var(--textColorTwo);
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+body.dark .navbar__logo > svg path{
+    
+    fill: var(--navbarShirtColor);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark  .active{
+    color : var(--navbarShirtColor);
+    transition: all 0.3s ease-in-out;
+} 
+
+body.dark header{
+    background-color: var(--backgroundBodyBlack);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .navbar__icon svg > path{
+    fill: var(--textColorTwo);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .shopping span{
+    background : var(--firtsColor);
+    color: var(--textColorTwo);
+    font-weight: 900;
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .text__firts-color{
+    color: var(--navbarShirtColor);;   
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .main__cards{
+    background-color: var(--backgroundCards);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .card__body{
+    background-color: var(--navbarColor);
+    color: var(--textColorTwo);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .card__body button {
+    background-color: var(--navbarColor);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .card__body button svg path{
+    fill: var(--textColorTwo);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .toggle__color svg{
+    display: none;
+}
+
+body.dark .toggle__color box-icon{
+    display: flex;
+    fill: #fff;
+    filter: brightness(200%);
+}
+
+body.dark .toggle__color box-icon path{
+    fill: rgb(70, 158, 154);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark .header__home-shirt > article{
+    background-color: var(--navbarShirtColor);
+    transition: all 0.3s ease-in-out;
+}
+
+body.dark footer{
+    background-color: var(--backgroundCards);
+    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+}
+
+body.dark footer article:nth-child(5){
+    background-color: var(--navbarShirtColor);
+}
+
+.toggle__color box-icon{
+    display: none;
+}
+
+.toggle__color svg{
+    display: flex;
+}
+
+.toggle__color{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.dark footer > article ul > li::before {
+ 
+    background-color: var(--firtsColor);
+   
+}
+body.dark footer > article ul > li::after {
+  
+    background-color: var(--firtsColor);
+  
+}
+
+body.dark .navbar__menu{
+    background-color: var(--backgroundBodyBlack);
+}
+
+body.dark .icons__shopping > svg path{
+    fill: white;
+}
+
+body.dark .icons__shopping > span{
+    background-color: var(--firtsColor);
+    font-weight: 800;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark .close__menu path{
+    fill: #fff;
+}
+
+body.dark .card__of-shopping{
+    background-color: #1B1A23;
+}
+
+body.dark .card__catalogo{
+    background-color: #1B1A23;
+}
+
+body.dark .card__catalogo-img{
+    background-color: var(--navbarColor);
+    border-color: var(--navbarShirtColor);
+}
+
+body.dark .card__catalogo-body p:nth-child(2){
+    color: var(--navbarShirtColor);
+}
+
+body.dark .card__catalogo-button p:nth-child(2){
+    color: #fff;
+}
+
+body.dark .card__catalogo-button button{
+    color: #fff;
+}
+
+body.dark .card__catalogo-button box-icon{
+    fill: var(--navbarShirtColor);
+}
+
+body.dark .shopping__container::-webkit-scrollbar-thumb{
+    background-color: var(--navbarShirtColor);
+    border-radius: 10px;
+    
+}
