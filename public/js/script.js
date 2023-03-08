@@ -126,8 +126,8 @@ async function main() {
                     </article>
                    
                     <article class="card__body background__cards-body color__white">
-                        <button id="${id}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                        <button >
+                            <svg id="${id}" class="shop"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                         </button>
                         <p> $ ${priceDouble} <span>Stock ${quantity}</span></p>
                         <p>${name}</p>
@@ -170,8 +170,8 @@ async function main() {
                         </article>
                        
                         <article class="card__body background__cards-body color__white">
-                            <button id="${id}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <button >
+                                <svg id="${id}" class="shop"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                             </button>
                             <p> $ ${priceDouble} <span>Stock ${quantity}</span></p>
                             <p>${name}</p>
@@ -217,8 +217,8 @@ async function main() {
                         </article>
                        
                         <article class="card__body background__cards-body color__white">
-                            <button id="${id}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <button >
+                                <svg id="${id}" class="shop"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                             </button>
                             <p> $ ${priceDouble} <span>Stock ${quantity}</span></p>
                             <p>${name}</p>
@@ -264,8 +264,8 @@ async function main() {
                         </article>
                        
                         <article class="card__body background__cards-body color__white">
-                            <button id="${id}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <button >
+                                <svg id="${id}" class="shop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                             </button>
                             <p> $ ${priceDouble} <span>Stock ${quantity}</span></p>
                             <p>${name}</p>
@@ -298,8 +298,8 @@ async function main() {
                 </article>
                
                 <article class="card__body background__cards-body color__white">
-                    <button id="${id}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                    <button >
+                        <svg class="shop" id="${id}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                     </button>
                     <p> $ ${priceDouble} <span>Stock ${quantity}</span></p>
                     <p>${name}</p>
@@ -364,13 +364,100 @@ function activeNavbar(){
        
 }
 
-function getProductToShopping(){
+async function getProductToShopping(){
 
-    const products = document.querySelectorAll(".main__cards");
+    const data = {
+        products : JSON.parse(window.localStorage.getItem("products") ) || await getData(),
+        carts : {}
+    }
+
+
+    const products = document.querySelector(".main__container");
 
     products.addEventListener("click", (e)=>{
 
-        console.log(e)
+        if(e.target.classList.contains("shop")){
+            const id = Number(e.target.id);
+
+            const shopping = data.products.find(element => element.id == id);
+
+            if(data.carts[shopping.id]){
+
+                if(shopping.quantity === data.carts[shopping.id].amount) 
+                return alert( "No hay mas en bodega")
+
+                data.carts[shopping.id].amount++;
+                
+            }else{
+                data.carts[shopping.id] = { ...shopping, amount: 1}
+            }
+
+
+            window.localStorage.setItem("carts", JSON.stringify(data.carts));
+
+
+            let shoppingHtml = '';
+
+            for(const element in data.carts){
+               const {name, amount, quantity, price, category, id, image } = data.carts[element];
+
+               
+               const total = amount * price;
+
+               let chopHtml = `
+               <section class="shopping__container">
+   
+              
+               <article class="shopping__catalog">
+   
+                   <article class="card__catalogo">
+                       <article class="card__catalogo-img">
+                           <img src="${image}"
+                               alt="${name} ${id}">
+                       </article>
+   
+                       <article class="card__catalogo-body">
+                           <h1>
+                               ${name}
+                           </h1>
+                           <p>
+                               <span>Stock: ${quantity} | </span>
+                               $${price} Subtotal: $${total}
+                           </p>
+   
+                           <article class="card__catalogo-button">
+                               <button>
+                                   -
+                               </button>
+   
+                               <p>3 units</p>
+   
+                               <button>
+                                   +
+                               </button>
+   
+                                   <box-icon name='trash-alt'></box-icon>
+                              
+                           </article>
+   
+                       </article>
+   
+                   </article>
+   
+               </article>
+   
+           </section>
+               `;
+
+               shoppingHtml += chopHtml
+             }
+
+             const chooseShopping = document.querySelector(".card__shopping-container");
+
+             chooseShopping.innerHTML = shoppingHtml;
+
+             shoppingHtml = "";
+        }
         
     });
 }

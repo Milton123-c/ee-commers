@@ -738,7 +738,7 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
 
 }
 
-.shopping__container{
+.card__shopping-container{
  
     height: calc(100vh - 150px);
     
