@@ -7,6 +7,7 @@
     box-sizing: border-box;
     font-family: var(--textFamily);
     scroll-behavior: smooth;
+    
 }
 
 /* variables */
@@ -43,11 +44,13 @@
 ::-webkit-scrollbar{
     width: 8px;
     background-color: var(--backgroundBody);
+   
 }
 
 ::-webkit-scrollbar-thumb{
     background-color: var(--firtsColor);
     border-radius: 10px;
+   
 }
 
 
@@ -343,6 +346,7 @@ header {
 
 /* working with of body */
 main {
+    
     margin: 0 3rem;
     display: flex;
     flex-direction: column;
@@ -353,6 +357,7 @@ main {
 .main__nav {
     display: flex;
     justify-content: center;
+    scroll-margin-top: 100px;
 }
 
 .main__nav ul {
@@ -440,6 +445,8 @@ main {
    
 }
 
+
+
 .card__body svg{
     position: absolute;
     width: 50px;
@@ -459,11 +466,25 @@ main {
     font-weight: 500;
 }
 
-.card__body p:nth-child(2) span{
+
+
+.sold__nout{
+    
     font-size: 0.9rem;
     color: #8f8989;
     font-weight: 500;
 }
+
+.sold__out{
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--firtsColor);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
 
 footer{
     padding: 4rem 2rem;
@@ -1222,6 +1243,10 @@ body.dark footer article:nth-child(5){
     justify-content: center;
     align-items: center;
 }
+
+
+
+
 
 body.dark footer > article ul > li::before {
  

@@ -6,6 +6,8 @@ function navb() {
     //navbar
     const navbar = document.querySelector(".navbar");
     const navbarIcon = document.querySelector(".navbar__icon");
+    const linkNabvar = document.querySelector(".link__navbar");
+    const li = navbar.querySelectorAll("li");
 
 
     window.addEventListener("scroll", () => {
@@ -19,13 +21,13 @@ function navb() {
             if (window.scrollY >= 72) {
 
                 navbar.classList.add("toggle__navbar-blac");
+                
 
             } else if (window.scrollY < 72) {
 
 
                 navbar.classList.remove("toggle__navbar-blac");
-
-
+               
             }
 
         } else {
@@ -133,7 +135,7 @@ async function main() {
                    
                             <svg id="${id}" class="shop"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                   
-                        <p> $ ${priceDouble} ${quantity ? `<span>Stock ${quantity}</span>`
+                        <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
                     : `<span class="sold__out">sold out</span>`
                 }</p>
                         <p>${name}</p>
@@ -179,7 +181,7 @@ async function main() {
                           
                                 <svg id="${id}" class="shop"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                           
-                            <p> $ ${priceDouble} ${quantity ? `<span>Stock ${quantity}</span>`
+                            <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
                         : `<span class="sold__out">sold out</span>`
                     }</p>
                             <p>${name}</p>
@@ -228,7 +230,7 @@ async function main() {
                          
                                 <svg id="${id}" class="shop"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                          
-                            <p> $ ${priceDouble} ${quantity ? `<span>Stock ${quantity}</span>`
+                            <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
                         : `<span class="sold__out">sold out</span>`
                     }</p>
                             <p>${name}</p>
@@ -277,7 +279,7 @@ async function main() {
                            
                                 <svg id="${id}" class="shop" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                        
-                            <p> $ ${priceDouble} ${quantity ? `<span>Stock ${quantity}</span>`
+                            <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
                         : `<span class="sold__out">sold out</span>`
                     }</p>
                             <p>${name}</p>
@@ -313,8 +315,8 @@ async function main() {
                   
                         <svg class="shop" id="${id}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                     
-                    <p> $ ${priceDouble} ${quantity ? `<span>Stock ${quantity}</span>`
-                : `<span class="sold__out">sold out</span>`
+                    <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
+                : `<span class="sold__out" >sold out</span>`
             }</p>
                     
                     <p>${name}</p>
