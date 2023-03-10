@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/public/img/favicon.png">
     <title>Academlo store</title>
 
     <!-- my styles  -->
@@ -21,7 +22,7 @@
     <!-- my script of javaScript -->
     <script src="/public/js/script.js" defer></script>
 
-    <script src="anijs-min.js" defer></script>
+   
 
 </head>
 
@@ -136,9 +137,9 @@
         </article>
 
         <article class="menu__navbar">
-            <ul>
-                <li class="active">Home</li>
-                <li>Products</li>
+            <ul class="menu__navbar-items">
+                <li class="menu__one active"><a href="#home">Home</a></li>
+                <li class="menu__two" target="#productos"><a href="#productos">Products</a></li>
             </ul>
         </article>
 
@@ -147,7 +148,7 @@
     <!-- end navbar -->
 
     <!-- header -->
-    <header>
+    <header id="header">
         <section class="header__home-shirt">
             <article>
                 <img src="/public/img/home.png" alt="shirtHome">
@@ -170,9 +171,9 @@
 
     </header>
     <!-- end header  -->
-
+    <div></div>
     <!-- main  -->
-    <main>
+    <main id="main">
         <article class="main__nav" id="productos">
             <ul>
                 <li class="show__all active_nav">

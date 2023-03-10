@@ -308,7 +308,7 @@ header {
 }
 
 .header__body {
-    padding: 2rem;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -835,6 +835,10 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
 
 @media (min-width : 500px) {
     
+    main {
+        padding-top: 1rem;
+    }
+
     .main__container{
         grid-template-columns: 1fr 1fr;
 
@@ -919,7 +923,7 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
 
 @media (min-width : 768px) {
     main{
-        padding-top: 0;
+        padding-top: 5rem;
     }
     .open__menu{
         display: none;
@@ -1000,6 +1004,18 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
 
 
 
+.menu__one a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu__two a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
 @media (min-width: 790px){
     
     .main__container{
@@ -1020,7 +1036,7 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
     }
 
     .header__home-shirt > article{
-        height: 770px;
+        height: 564px;
         width: 100%;
       
     }
@@ -1033,8 +1049,10 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
         width: 80%;
     }
     .header__body{
-        padding-top: 14rem;
-       
+        height: 564px;
+        justify-content: center;
+        align-items: start;
+        padding: 0 1rem;
     }
 
     .navbar{
@@ -1042,8 +1060,23 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
     }
 }
 
+@media (min-width: 768px){
+   .header__home-shirt{
+    height: 500px;
+   }
+   .header__body{
+    height: 500px;
+   }
+   header{
+    width: 100%;
+    height: 500px;
+   }
+}
+
 @media (min-width : 1024px) {
 
+  
+    
     .main__container{
         grid-template-columns: repeat(3, 1fr);
 
@@ -1096,6 +1129,11 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
 
     }
 
+    .navbar{
+        width: 80vw;
+       
+    }
+
     header{
         width: 70vw;
         
@@ -1104,8 +1142,7 @@ footer > article ul > li:hover::before,footer > article ul > li:hover::after{
     body{
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        gap: 7rem;
     }
 
     .header__home-shirt > article{

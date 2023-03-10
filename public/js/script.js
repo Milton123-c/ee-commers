@@ -8,9 +8,28 @@ function navb() {
     const navbarIcon = document.querySelector(".navbar__icon");
     const linkNabvar = document.querySelector(".link__navbar");
     const li = navbar.querySelectorAll("li");
+    const menuNambar = document.querySelector(".menu__navbar-items");
+    const liMenu = menuNambar.querySelectorAll("li");
 
 
     window.addEventListener("scroll", () => {
+
+        if(window.scrollY >= 541){
+
+            li[0].classList.remove("active");
+            li[1].classList.add("active");
+            liMenu[0].classList.remove("active");
+            liMenu[1].classList.add("active");
+    
+
+        }else{
+            li[0].classList.add("active");
+            li[1].classList.remove("active");
+            liMenu[0].classList.add("active");
+            liMenu[1].classList.remove("active");
+    
+    
+        }
 
         if (navbarIcon.classList.contains("new__icon-color")) {
 
@@ -366,17 +385,47 @@ function activeNavbar() {
     const navbar = document.querySelector(".link__navbar");
     const li = navbar.querySelectorAll("li");
 
+    const menuNambar = document.querySelector(".menu__navbar-items");
+    const liMenu = menuNambar.querySelectorAll("li");
+ 
+
     li[0].addEventListener("click", () => {
 
         li[0].classList.add("active");
         li[1].classList.remove("active");
+
+        liMenu[0].classList.add("active");
+        liMenu[1].classList.remove("active");
 
     });
 
     li[1].addEventListener("click", () => {
         li[1].classList.add("active");
         li[0].classList.remove("active");
+        liMenu[0].classList.remove("active");
+        liMenu[1].classList.add("active");
     });
+
+    
+    const mNabars = document.querySelector(".menu__navbar-items");
+
+    mNabars.addEventListener("click", (e)=> {
+        if(e.target.classList.contains("menu__one")){
+
+            li[0].classList.add("active");
+        li[1].classList.remove("active");
+
+        liMenu[0].classList.add("active");
+        liMenu[1].classList.remove("active");
+
+        }else if (e.target.classList.contains("menu__two")){
+
+            li[1].classList.add("active");
+            li[0].classList.remove("active");
+            liMenu[0].classList.remove("active");
+            liMenu[1].classList.add("active");
+        }
+    })
 
 
 }
@@ -706,10 +755,51 @@ const comprar = () => {
     });
 }
 
+const closeMenuNabvar = () => {
+
+    const menuOne = document.querySelector(".menu__one");
+    const menuTwo = document.querySelector(".menu__two");
+    const menuClose = document.querySelector(".navbar__menu");
+
+
+    menuOne.addEventListener("click", ()=> {
+       menuClose.classList.toggle("close")
+    });
+
+    menuTwo.addEventListener("click", ()=> {
+        menuClose.classList.toggle("close")
+    })
+
+};
+
+const closeMenuShopping = ()=> {
+    
+    const menuShopping = document.querySelector(".card__of-shopping");
+    
+    const header = document.querySelector("#header");
+    const main = document.querySelector("#main");
+
+    header.addEventListener("click", ()=>{
+
+        if(menuShopping.classList.contains("card__shopping-open")){
+            menuShopping.classList.toggle("card__shopping-open")
+        }
+
+    });
+
+    main.addEventListener("click", ()=>{
+        if(menuShopping.classList.contains("card__shopping-open")){
+            menuShopping.classList.toggle("card__shopping-open")
+        }
+    });
+
+}
+
 
 activeNavbar();
 navb();
 menuBar();
+
 toggleColor();
 openShopping();
 main();
@@ -718,4 +808,6 @@ printCards(newCarts)
 comprar();
 deteleProducts();
 addProducts();
-deleteSelectProduct()
+deleteSelectProduct();
+closeMenuNabvar();
+closeMenuShopping();
