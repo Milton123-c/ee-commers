@@ -110,7 +110,7 @@ let db = JSON.parse(window.localStorage.getItem("products")) || getData();
 let newCarts = JSON.parse(window.localStorage.getItem("carts")) || {};
 
 
-async function main(animar = false) {
+async function main(animar = true) {
 
     const data = JSON.parse(window.localStorage.getItem("products")) || await getData();
 
@@ -763,7 +763,7 @@ const acctionBoy = () => {
     window.localStorage.setItem("products", JSON.stringify(db))
     window.localStorage.setItem("carts", JSON.stringify(newCarts))
    
-    main();
+    main(false);
     clearBuy();
     printCards(newCarts)
 }
