@@ -130,6 +130,7 @@ async function main(animar = true) {
 
     //show all
     showAll.addEventListener("click", () => {
+        animar = true
         showAll.classList.add('active_nav')
 
         showShirt.classList.remove("active_nav")
@@ -173,6 +174,8 @@ async function main(animar = true) {
 
     //show shirt
     showShirt.addEventListener("click", () => {
+
+animar = true
         showShirt.classList.add('active_nav')
 
         showAll.classList.remove("active_nav")
@@ -222,6 +225,8 @@ async function main(animar = true) {
 
     //show hoddie
     showHoddie.addEventListener("click", () => {
+
+animar = true
         showHoddie.classList.add('active_nav')
 
         showAll.classList.remove("active_nav")
@@ -270,6 +275,7 @@ async function main(animar = true) {
 
     //show sweater
     showSweater.addEventListener("click", () => {
+animar = true
         showSweater.classList.add('active_nav')
 
         showAll.classList.remove("active_nav")
