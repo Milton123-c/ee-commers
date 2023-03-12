@@ -9,6 +9,7 @@
     <title>Academlo store</title>
 
     <!-- my styles  -->
+    <link rel="stylesheet" href="/public/css/loaderStyle.css">
     <link rel="stylesheet" href="/public/css/styles.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,12 +26,13 @@
 
     
 <!-- JavaScript -->
+
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js" defer></script>
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" defer></script>
 
     <!-- my script of javaScript -->
-    <script src="/public/js/script.js" defer></script>
+    <script src="/public/js/script.js" type="module" defer></script>
 
 
 
@@ -38,6 +40,25 @@
 
 <body id="home">
 
+    <!-- loader -->
+    <div class="container__loading">
+
+        <div class="contaner__loading-content">
+
+            <div class="loading">
+
+            </div>
+
+            <div>
+                <img src="/public/img/favicon.png" alt="">
+            </div>
+        </div>
+
+        <div class="contaner__loading-shadown">
+
+        </div>
+
+    </div>
     <!-- carrito de compra -->
 
     <section class="card__of-shopping">
@@ -50,7 +71,12 @@
 
 
         <section class="shopping__body">
-
+            <article class="error">
+                <article class="empy__card">
+                    <img src="/public/img/empty-cart.png" alt="">
+                </article>
+                
+            </article>
             <article>
                 <p class="shopping__body-item">Items</p>
                 <p class="shopping__body-price">$0</p>
@@ -178,7 +204,7 @@
             <p class="text__firts-color">
                 $14.00
             </p>
-            <a href="#">Show more</a>
+            <a href="#main">Show more</a>
         </article>
 
     </header>

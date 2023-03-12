@@ -412,7 +412,8 @@ main {
     background-color: var(--backgroundColorThree);
     border-radius: 1rem;
     overflow: hidden;
-
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .3), 0 7px 21px 0 rgba(0, 0, 0, .20);
+   
     transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
 }
 
@@ -425,6 +426,7 @@ main {
     gap: 2rem;
     overflow: hidden;
     transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+    padding: 1rem;
 }
 
 .card__img {
@@ -458,18 +460,50 @@ main {
 
 
 
-.card__body svg {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
+.card__body button{
+    background-color: var(--mainCardsColors);
     border: none;
-    padding: 1rem;
-    top: -25px;
-    right: 25px;
-    background-color: #fff;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
-    transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
+    border-radius: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    top: -1.4rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .3), 0 7px 21px 0 rgba(0, 0, 0, .20);
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.card__body button:hover{
+    background-color: var(--firtsColor);
+    color: #fff;
+}
+
+
+.card__body button::before {
+    position: absolute;
+    width: max-content;
+    top: 17%;
+    left: -80px;
+
+    background-color: var(--mainCardsColors);
+    padding: 4px 8px;
+    border-radius: 2rem;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+    content: 'comprar';
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s ease-in-out;
+    /* opacity: 0;
+    transition: opacity 0.2s ease-in-out; */
+}
+.card__body button:hover::before{
+
+    transform: scaleX(1);
+    /* opacity: 1; */
+  
 }
 
 .card__body p:nth-child(2) {
@@ -484,18 +518,41 @@ main {
     font-size: 0.9rem;
     color: #8f8989;
     font-weight: 500;
+    
 }
+
+
 
 .sold__out {
     font-size: 0.9rem;
     font-weight: 500;
     color: #fff;
     background-color: var(--firtsColor);
-    padding: 5px 10px;
+    padding: 4px 10px;
     cursor: pointer;
+    position: relative;
+    border-top-right-radius: 2rem;
+    transition: background-color 0.5s ease-in-out;
+    
 }
 
+.error{
+    display: flex;
+    width: 100vw;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+   
+}
 
+.empy__card{
+    width: 80%;
+    overflow: hidden;
+}
+
+.empy__card img{
+    width: 100%;
+}
 
 footer {
     padding: 4rem 2rem;
@@ -1263,6 +1320,11 @@ body.dark .active {
     transition: all 0.3s ease-in-out;
 }
 
+body.dark .main__cards{
+    box-shadow: 0 5px 10px 0 rgba(71, 70, 70, 0.3), 0 7px 21px 0 rgba(71, 70, 70, 0.20);
+   
+}
+
 body.dark header {
     background-color: var(--backgroundBodyBlack);
     transition: all 0.3s ease-in-out;
@@ -1297,16 +1359,41 @@ body.dark .card__body {
     transition: all 0.3s ease-in-out;
 }
 
-body.dark .card__body svg {
+body.dark .card__body button {
     background-color: var(--navbarColor);
+    color: #fff;
+
+    box-shadow: 0 3px 5px rgba(255, 255, 255,0.5);
     transition: all 0.3s ease-in-out;
 }
 
-body.dark .card__body svg path {
-    fill: var(--textColorTwo);
-    transition: all 0.3s ease-in-out;
+body.dark .card__body button:hover {
+    background-color: var(--navbarShirtColor);
+  
 }
+body.dark .card__body button::before {
+    position: absolute;
+    width: max-content;
+    top: 17%;
+    left: -80px;
 
+    background-color: var(--firtsColor);
+    padding: 4px 8px;
+    border-radius: 2rem;
+    font-size: 1rem;
+    content: 'comprar';
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s ease-in-out;
+    /* opacity: 0;
+    transition: opacity 0.2s ease-in-out; */
+}
+body.dark .card__body button:hover::before{
+
+    transform: scaleX(1);
+    /* opacity: 1; */
+  
+}
 body.dark .toggle__color svg {
     display: none;
 }
@@ -1365,6 +1452,13 @@ body.dark footer>article ul>li::after {
     background-color: var(--firtsColor);
 
 }
+
+body.dark .sold__out {
+
+    background-color: purple;
+    transition: background-color 0.5s ease-in-out;
+}
+
 
 body.dark .navbar__menu {
     background-color: var(--backgroundBodyBlack);
