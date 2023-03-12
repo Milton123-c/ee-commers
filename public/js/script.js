@@ -93,8 +93,8 @@ function menuBar() {
 async function getData() {
     try {
 
-        const data = await fetch("https://ecommercebackend.fundamentos-29.repl.co/");
-
+        const data = await fetch("https://ecommercebackend.fundamentos-29.repl.co/")
+        
         const res = await data.json();
 
         window.localStorage.setItem("products", JSON.stringify(res));
@@ -110,7 +110,7 @@ let db = JSON.parse(window.localStorage.getItem("products")) || getData();
 let newCarts = JSON.parse(window.localStorage.getItem("carts")) || {};
 
 
-async function main() {
+async function main(animar = false) {
 
     const data = JSON.parse(window.localStorage.getItem("products")) || await getData();
 
@@ -143,7 +143,7 @@ async function main() {
             const priceDouble = price.toFixed(2);
 
             let html = `
-            <section class="main__cards animate__animated animate__backInDown">
+            <section class="main__cards ${ animar ? "animate__animated animate__backInDown" : '' } ">
         
                     <article class="card__img">
                         <img  src="${image}" alt="${name} ${id}">
@@ -189,7 +189,7 @@ async function main() {
 
             if (category === "shirt") {
                 let html = `
-                <section class="main__cards animate__animated animate__backInUp">
+                <section class="main__cards ${ animar ? "animate__animated animate__backInUp" : '' }">
             
                         <article class="card__img">
                             <img  src="${image}" alt="${name} ${id}">
@@ -238,7 +238,7 @@ async function main() {
 
             if (category === "hoddie") {
                 let html = `
-                <section class="main__cards animate__animated animate__backInLeft">
+                <section class="main__cards ${ animar ? "animate__animated animate__backInLeft" : '' }">
             
                         <article class="card__img">
                             <img  src="${image}" alt="${name} ${id}">
@@ -287,7 +287,7 @@ async function main() {
 
             if (category === "sweater") {
                 let html = `
-                <section class="main__cards animate__animated animate__backInRight">
+                <section class="main__cards ${ animar ? "animate__animated animate__backInRight" : '' }">
             
                         <article class="card__img">
                             <img  src="${image}" alt="${name} ${id}">
@@ -323,7 +323,7 @@ async function main() {
         const priceDouble = price.toFixed(2);
 
         let html = `
-        <section class="main__cards animate__animated animate__backInDown">
+        <section class="main__cards  ${ animar ? "animate__animated  animate__backInDown" : '' }">
     
                 <article class="card__img">
                     <img  src="${image}" alt="${name} ${id}">
@@ -441,9 +441,21 @@ async function getProductToShopping() {
         if (e.target.classList.contains("shop")) {
             const id = Number(e.target.id);
 
-            let dataZero = db.find(element => element.id === id);
+            let dataZero = null;
 
-            if (!dataZero.quantity) return alert("Lo sentimos, producto acabado")
+            try {
+                dataZero =  db.find(element => element.id === id);
+
+            } catch (error) {
+
+                db = JSON.parse(window.localStorage.getItem("products"));
+
+                dataZero =  db.find(element => element.id === id);
+
+            }
+
+
+            if (!dataZero.quantity) return alertify.alert('Lo sentimos', 'Producto Acabado', function(){ alertify.success('Ok'); }); 
 
             let shopping = null;
 
@@ -456,7 +468,7 @@ async function getProductToShopping() {
             if (newCarts[shopping.id]) {
 
                 if (shopping.quantity === newCarts[shopping.id].amount)
-                    return alert("No hay mas en bodega")
+                    return alertify.alert('Lo sentimos', 'No hay mas en bodega', function(){ alertify.success('Ok'); });
 
                 newCarts[shopping.id].amount++;
 
@@ -574,7 +586,43 @@ function printCards(carts) {
 }
 
 
+function actionDeleteProducts(findProducto,id){
+    if (findProducto.amount === 1) {
 
+
+
+        findProducto.amount--;
+
+        for (const element in newCarts) {
+            if (newCarts[element].id === id) {
+
+                delete newCarts[element];
+
+            }
+        }
+      clearBuy();
+
+        printCards(newCarts)
+
+    } else {
+        findProducto.amount--;
+
+
+        for (const element in newCarts) {
+            if (newCarts[element].id === id) {
+
+                newCarts[element] = findProducto;
+
+            }
+        }
+
+        printCards(newCarts);
+    }
+
+    //actualizamos el localstorage
+    window.localStorage.setItem("carts", JSON.stringify(newCarts));
+
+}
 function deteleProducts() {
 
 
@@ -589,52 +637,29 @@ function deteleProducts() {
 
             for (const element in newCarts) {
                 if (newCarts[element].id === id) {
+
+
+
                     findProducto = newCarts[element];
                 }
             }
 
             //procedemos a reducir la cantidad de amount
 
-            if (findProducto.amount === 1) {
-                findProducto.amount--;
+          if(findProducto.amount === 1){
+            alertify.confirm('Warning', 'Desea eliminar este producto', 
 
-                for (const element in newCarts) {
-                    if (newCarts[element].id === id) {
+            function(){ alertify.success('Eliminado 😠😠 '); actionDeleteProducts(findProducto,id)}
+            
+            , function(){ alertify.error('No eliminado 😁😀')})
 
-                        delete newCarts[element];
+            
+            return;
+          }
 
-                    }
-                }
-                const shoppingItem = document.querySelector(".shopping__body-item");
-                const shoppingPrice = document.querySelector(".shopping__body-price");
-                const shoppingTotal = document.querySelector(".total__shopping");
-                const shoppingMenu = document.querySelector(".total__shopping-menu");
-    
-                shoppingItem.innerHTML = "0 items";
-                shoppingPrice.innerHTML = "$0";
-                shoppingTotal.innerHTML = "0";
-                shoppingMenu.innerHTML = "0";
+          actionDeleteProducts(findProducto);
 
-                printCards(newCarts)
-
-            } else {
-                findProducto.amount--;
-
-
-                for (const element in newCarts) {
-                    if (newCarts[element].id === id) {
-
-                        newCarts[element] = findProducto;
-
-                    }
-                }
-
-                printCards(newCarts);
-            }
-
-            //actualizamos el localstorage
-            window.localStorage.setItem("carts", JSON.stringify(newCarts));
-
+           
         }
     });
 
@@ -654,8 +679,8 @@ function addProducts() {
             for (const element in newCarts) {
 
                 if (newCarts[element].id === id) {
-
-                    if (newCarts[element].amount === newCarts[element].quantity) return alert("No hay mas productos");
+                   
+                    if (newCarts[element].amount === newCarts[element].quantity) return alertify.alert('Lo sentimos', 'No hay mas producto en bodega', function(){ alertify.success('Ok'); });;
 
                     newCarts[element].amount++;
 
@@ -673,36 +698,35 @@ function addProducts() {
 
 }
 
-function deleteSelectProduct() {
-
-    const container = document.querySelector(".card__shopping-container");
-
-    container.addEventListener('click', (e) => {
-
-        if (e.target.classList.contains("shopping__button-allDelete")) {
-
-            const id = Number(e.target.id);
-
+const eventoEleminar = (e) =>{
+    const id = Number(e.target.id);
+            
+            
             for (const element in newCarts) {
+
                 if (newCarts[element].id === id) {
                     delete newCarts[element];
                 }
             }
 
-            const shoppingItem = document.querySelector(".shopping__body-item");
-            const shoppingPrice = document.querySelector(".shopping__body-price");
-            const shoppingTotal = document.querySelector(".total__shopping");
-            const shoppingMenu = document.querySelector(".total__shopping-menu");
-
-            shoppingItem.innerHTML = "0 items";
-            shoppingPrice.innerHTML = "$0";
-            shoppingTotal.innerHTML = "0";
-            shoppingMenu.innerHTML = "0";
+           clearBuy();
 
             printCards(newCarts);
 
             window.localStorage.setItem("carts", JSON.stringify(newCarts));
 
+}
+  function deleteSelectProduct() {
+
+    const container = document.querySelector(".card__shopping-container");
+     container.addEventListener('click', (e) => {
+
+        if (e.target.classList.contains("shopping__button-allDelete")) {
+
+            alertify.confirm('Warning', 'Desea eliminar este producto', function(){ alertify.success('Eliminado 😠😠 '); eventoEleminar(e)}
+            , function(){ alertify.error('No eliminado 😁😀')})
+
+            
 
         }
 
@@ -710,49 +734,74 @@ function deleteSelectProduct() {
 
 }
 
+
+const acctionBoy = () => {
+    const currentProducts = [];
+
+    for (const product of db) {
+        const productCarts = newCarts[product.id]
+
+        if (product.id === productCarts?.id) {
+
+            currentProducts.push(
+                {
+                    ...product,
+                    quantity: product.quantity - productCarts.amount
+                }
+            )
+            
+
+        } else {
+
+            currentProducts.push(product)
+        }
+    }
+
+    db = currentProducts;
+    newCarts = {};
+
+    window.localStorage.setItem("products", JSON.stringify(db))
+    window.localStorage.setItem("carts", JSON.stringify(newCarts))
+   
+    main();
+    clearBuy();
+    printCards(newCarts)
+}
+
 const comprar = () => {
     const buyShopping = document.querySelector('.shopping__card-item');
 
-    buyShopping.addEventListener('click', () => {
+    buyShopping.addEventListener('click', (e) => {
+
+        e.preventDefault;
+
+        if (!Object.values(newCarts).length) return alertify.alert('Palmado 😮', 'No tienes nada en el carrito 😂😂😂', function(){ alertify.success('Ok 😪😪'); });
+
+        alertify.confirm('Warning', 'Seguro que quieres hacer esta compra', 
+        
+        function(){ alertify.success('Gracias Por su compra 😎😎'); acctionBoy() }
 
 
-        if (!Object.values(newCarts).length) return alert("No tienes nada en el carrito")
-
-        const response = confirm("seguro que quieres comprar ")
+        , function(){ alertify.error('Compra cancelada 😠😠')})
 
 
-        if (!response) return;
-
-        const currentProducts = [];
-
-        for (const product of db) {
-            const productCarts = newCarts[product.id]
-
-            if (product.id === productCarts?.id) {
-
-                currentProducts.push(
-                    {
-                        ...product,
-                        quantity: product.quantity - productCarts.amount
-                    }
-                )
-                console.log("entro")
-
-            } else {
-
-                currentProducts.push(product)
-            }
-        }
-
-        db = currentProducts;
-        newCarts = {};
-
-        window.localStorage.setItem("products", JSON.stringify(db))
-        window.localStorage.setItem("carts", JSON.stringify(newCarts))
-        main();
-        printCards(newCarts)
+       
 
     });
+}
+
+const clearBuy = () =>{
+     
+    const buyItem = document.querySelector(".shopping__body-item");
+    const buyPrice = document.querySelector(".shopping__body-price") 
+    const buyTotal = document.querySelector(".total__shopping");
+    const buyTotalTwo = document.querySelector(".total__shopping-menu");
+
+    buyItem.innerHTML = "0 Items";
+    buyPrice.innerHTML = "$ 0";
+    buyTotal.innerHTML = "0";
+    buyTotalTwo.innerHTML = "0";
+
 }
 
 const closeMenuNabvar = () => {

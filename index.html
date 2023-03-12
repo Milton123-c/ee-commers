@@ -17,12 +17,22 @@
     <link rel="stylesheet" href="http://anijs.github.io/lib/anicollection/anicollection.css">
     <!-- iconos -->
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+
+    
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js" defer></script>
+
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" defer></script>
 
     <!-- my script of javaScript -->
     <script src="/public/js/script.js" defer></script>
 
-   
+
 
 </head>
 
@@ -35,7 +45,7 @@
             x
         </span>
         <section class="card__shopping-container">
-            
+
         </section>
 
 
@@ -56,65 +66,67 @@
     <!-- navbar -->
 
     <nav class="navbar">
-        <div class="navbar__logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
-                <title>Academlo Logo</title>
-                <g>
+        <article class="navbar__container">
+            <div class="navbar__logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.92 56.48">
+                    <title>Academlo Logo</title>
                     <g>
-                        <path
-                            d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
-                        </path>
+                        <g>
+                            <path
+                                d="M28.58,15.39H25.16L35.78,36H31.49L20.67,15.71,8.23,38.82H18.94l3-5.43h-3.4l-1.47,2.54h-4l2.69-5.09H25.85l4.28,8H40.67ZM17.23,28.21l3.57-6.6,3.57,6.6Z">
+                            </path>
+                        </g>
                     </g>
-                </g>
-            </svg>
-            <p>STORE</p>
+                </svg>
+                <p>STORE</p>
 
-            <article class="navbar__nav">
-                <ul class="link__navbar">
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#productos">Products</a></li>
-                </ul>
-            </article>
-        </div>
+                <article class="navbar__nav">
+                    <ul class="link__navbar">
+                        <li class="active"><a href="#home">Home</a></li>
+                        <li><a href="#productos">Products</a></li>
+                    </ul>
+                </article>
+            </div>
 
-        <div class="navbar__icon">
-            <div class="toggle__color">
-                <svg class="cursor__pointer " xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+            <div class="navbar__icon">
+                <div class="toggle__color">
+                    <svg class="cursor__pointer " xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                        <path
+                            d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z">
+                        </path>
+                    </svg>
+
+                    <box-icon name='sun'></box-icon>
+                </div>
+
+
+                <div class="shopping" id="open">
+                    <svg class="cursor__pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                        <path
+                            d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z">
+                        </path>
+                    </svg>
+
+                    <span class="total__shopping">0</span>
+
+                </div>
+
+                <svg class="cursor__pointer open__menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" style="fill: rgb(19, 18, 18);">
                     <path
-                        d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z">
+                        d="M4 13h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm-1 7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4zm10 0a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v7zm1-10h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1z">
                     </path>
                 </svg>
 
-                <box-icon name='sun'></box-icon>
-            </div>
-
-
-            <div class="shopping" id="open">
-                <svg class="cursor__pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
-                    <path
-                        d="M5 22h14c1.103 0 2-.897 2-2V9a1 1 0 0 0-1-1h-3V7c0-2.757-2.243-5-5-5S7 4.243 7 7v1H4a1 1 0 0 0-1 1v11c0 1.103.897 2 2 2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-4 3h2v2h2v-2h6v2h2v-2h2l.002 10H5V10z">
-                    </path>
-                </svg>
-
-                <span class="total__shopping">0</span>
 
             </div>
 
-            <svg class="cursor__pointer open__menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" style="fill: rgb(19, 18, 18);">
-                <path
-                    d="M4 13h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm-1 7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4zm10 0a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v7zm1-10h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1z">
-                </path>
-            </svg>
-
-
-        </div>
-
+        </article>
 
     </nav>
-    
+
     <article class="navbar__menu">
         <article class="icons__menu">
 
@@ -274,7 +286,7 @@
             </ul>
         </article>
 
-        <article>
+        <article class="articulo">
             <ul>
                 <li>
 
