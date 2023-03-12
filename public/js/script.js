@@ -712,7 +712,7 @@ function deteleProducts() {
 
 
 }
-
+//version 0.8
 function addProducts() {
 
     const container = document.querySelector(".card__shopping-container");
@@ -720,6 +720,7 @@ function addProducts() {
     container.addEventListener("click", (e) => {
         if (e.target.classList.contains("shopping__button-add")) {
 
+            
             const id = Number(e.target.id);
 
             for (const element in newCarts) {
