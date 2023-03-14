@@ -1,6 +1,8 @@
 
 import { loadWindows } from './loaderScript.js'
 
+let db = JSON.parse(window.localStorage.getItem("products")) || getData();
+let newCarts = JSON.parse(window.localStorage.getItem("carts")) || {};
 
 function navb() {
     //navbar
@@ -107,10 +109,7 @@ async function getData() {
     }
 }
 
-let db = JSON.parse(window.localStorage.getItem("products")) || getData();
-let newCarts = JSON.parse(window.localStorage.getItem("carts")) || {};
-
-const showDocumentForCategory = async(elements, animar) => {
+const showDocumentForCategory = async (elements, animar) => {
     const mainContainer = document.querySelector(".main__container");
 
     const data = JSON.parse(window.localStorage.getItem("products")) || await getData();
@@ -121,6 +120,7 @@ const showDocumentForCategory = async(elements, animar) => {
     switch (elements) {
 
         case "showAll":
+
             htmlJoin = "";
 
             data.forEach(element => {
@@ -129,158 +129,143 @@ const showDocumentForCategory = async(elements, animar) => {
                 const priceDouble = price.toFixed(2);
 
                 let html = `
-            <section class="main__cards ${animar ? "animate__animated animate__backInDown" : ''} ">
-        
-                    <article class="card__img">
-                        <img  src="${image}" alt="${name} ${id}">
-                   
-                    </article>
-                   
-                    <article class="card__body background__cards-body color__white">
-                   
+                        <section class="main__cards ${animar ? "animate__animated animate__backInDown" : ''}">
                     
-                    <button class="shop" id="${id}">+</button> 
+                            <article class="card__img">
+                                <img  src="${image}" alt="${name} ${id}">
+                               
+                            </article>
+                               
+                            <article class="card__body background__cards-body color__white">
+                                   
+                                       
+                                 <button class="shop" id="${id}">+</button> 
 
-                        <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
-                        : `<span class="sold__out">sold out</span>`
-                    }</p>
-                        <p>${name}</p>
-                    </article>
-        
-                </section>
-            `;
+                                <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
+                        `<span class="sold__out">sold out</span>`}</p>
+                                <p>${name}</p>
+                            </article>
+                    
+                        </section>`;
 
                 htmlJoin += html;
-
             });
             mainContainer.innerHTML = htmlJoin;
             break;
 
         case "showShirt":
+
             htmlJoin = '';
 
             data.forEach(element => {
-                const { category, description, id, image, name, price, quantity } = element;
-    
+                const { category, id, image, name, price, quantity } = element;
+
                 const priceDouble = price.toFixed(2);
-    
-    
+
                 if (category === "shirt") {
+
                     let html = `
-                    <section class="main__cards ${animar ? "animate__animated animate__backInUp" : ''}">
-                
+                        <section class="main__cards ${animar ? "animate__animated animate__backInUp" : ''}">
+                    
                             <article class="card__img">
                                 <img  src="${image}" alt="${name} ${id}">
-                           
+                               
                             </article>
-                           
+                               
                             <article class="card__body background__cards-body color__white">
-                              
-                                    
-                        <button class="shop" id="${id}">+</button> 
-
-                                <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
-                            : `<span class="sold__out">sold out</span>`
-                        }</p>
-                                <p>${name}</p>
-                            </article>
-                
-                        </section>
-                    `;
-    
-                    htmlJoin += html;
-                }
-    
-    
-    
-            });
-    
-            mainContainer.innerHTML = htmlJoin;
-    
-            break;
-
-            case "showHoddie":
-                htmlJoin = '';
-
-                data.forEach(element => {
-                    const { category, description, id, image, name, price, quantity } = element;
-        
-                    const priceDouble = price.toFixed(2);
-        
-        
-                    if (category === "hoddie") {
-                        let html = `
-                        <section class="main__cards ${animar ? "animate__animated animate__backInLeft" : ''}">
-                    
-                                <article class="card__img">
-                                    <img  src="${image}" alt="${name} ${id}">
-                               
-                                </article>
-                               
-                                <article class="card__body background__cards-body color__white">
-                                 
-                                      
-                        <button class="shop" id="${id}">+</button> 
-
-                                    <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
-                                : `<span class="sold__out">sold out</span>`
-                            }</p>
-                                    <p>${name}</p>
-                                </article>
-                    
-                            </section>
-                        `;
-        
-                        htmlJoin += html;
-                    }
-        
-        
-        
-                });
-        
-                mainContainer.innerHTML = htmlJoin;
-            break;
-
-            case "showSweater":
-                htmlJoin = '';
-
-                data.forEach(element => {
-                    const { category, description, id, image, name, price, quantity } = element;
-        
-                    const priceDouble = price.toFixed(2);
-        
-        
-                    if (category === "sweater") {
-                        let html = `
-                        <section class="main__cards ${animar ? "animate__animated animate__backInRight" : ''}">
-                    
-                                <article class="card__img">
-                                    <img  src="${image}" alt="${name} ${id}">
-                               
-                                </article>
-                               
-                                <article class="card__body background__cards-body color__white">
                                    
                                        
-                        <button class="shop" id="${id}">+</button> 
+                                 <button class="shop" id="${id}">+</button> 
 
-                                    <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>`
-                                : `<span class="sold__out">sold out</span>`
-                            }</p>
-                                    <p>${name}</p>
-                                </article>
+                                <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
+                            `<span class="sold__out">sold out</span>`}</p>
+                                <p>${name}</p>
+                            </article>
                     
-                            </section>
-                        `;
-        
-                        htmlJoin += html;
-                    }
-        
-        
-        
-                });
-        
-                mainContainer.innerHTML = htmlJoin;
+                        </section>`;
+                    htmlJoin += html;
+                }
+
+            });
+
+            mainContainer.innerHTML = htmlJoin;
+
+            break;
+
+        case "showHoddie":
+
+            htmlJoin = '';
+
+            data.forEach(element => {
+                const { category, id, image, name, price, quantity } = element;
+
+                const priceDouble = price.toFixed(2);
+
+
+                if (category === "hoddie") {
+                    let html = `
+                        <section class="main__cards ${animar ? "animate__animated animate__backInLeft" : ''}">
+                    
+                            <article class="card__img">
+                                <img  src="${image}" alt="${name} ${id}">
+                               
+                            </article>
+                               
+                            <article class="card__body background__cards-body color__white">
+                                   
+                                       
+                                 <button class="shop" id="${id}">+</button> 
+
+                                <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
+                            `<span class="sold__out">sold out</span>`}</p>
+                                <p>${name}</p>
+                            </article>
+                    
+                        </section>`;
+
+                    htmlJoin += html;
+                }
+            });
+
+            mainContainer.innerHTML = htmlJoin;
+            break;
+
+        case "showSweater":
+
+            htmlJoin = '';
+
+            data.forEach(element => {
+                const { category, id, image, name, price, quantity } = element;
+
+                const priceDouble = price.toFixed(2);
+
+                if (category === "sweater") {
+                    let html = `
+                        <section class="main__cards ${animar ? "animate__animated animate__backInRight" : ''}">
+                    
+                            <article class="card__img">
+                                <img  src="${image}" alt="${name} ${id}">
+                               
+                            </article>
+                               
+                            <article class="card__body background__cards-body color__white">
+                                   
+                                       
+                                 <button class="shop" id="${id}">+</button> 
+
+                                <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
+                            `<span class="sold__out">sold out</span>`}</p>
+                                <p>${name}</p>
+                            </article>
+                    
+                        </section>`;
+
+                    htmlJoin += html;
+                }
+
+            });
+
+            mainContainer.innerHTML = htmlJoin;
             break;
     }
 
@@ -292,12 +277,9 @@ async function main(animar = true) {
 
     const mainContainer = document.querySelector(".main__container");
 
-
-
     let htmlJoin = "";
 
     //mostramos todos los productos
-
     const showAll = document.querySelector(".show__all");
     const showShirt = document.querySelector(".show__shirt");
     const showHoddie = document.querySelector(".show__hoddie");
@@ -306,14 +288,12 @@ async function main(animar = true) {
 
     //show all
     showAll.addEventListener("click", () => {
+
         animar = true;
-
-
-        showAll.classList.add('active_nav')
-
-        showShirt.classList.remove("active_nav")
-        showHoddie.classList.remove("active_nav")
-        showSweater.classList.remove("active_nav")
+        showAll.classList.add('active_nav');
+        showShirt.classList.remove("active_nav");
+        showHoddie.classList.remove("active_nav");
+        showSweater.classList.remove("active_nav");
 
         showDocumentForCategory("showAll", animar);
 
@@ -321,45 +301,44 @@ async function main(animar = true) {
 
     //show shirt
     showShirt.addEventListener("click", () => {
+
         animar = true;
-
-        showShirt.classList.add('active_nav')
-
-        showAll.classList.remove("active_nav")
-        showHoddie.classList.remove("active_nav")
-        showSweater.classList.remove("active_nav")
+        showShirt.classList.add('active_nav');
+        showAll.classList.remove("active_nav");
+        showHoddie.classList.remove("active_nav");
+        showSweater.classList.remove("active_nav");
 
         showDocumentForCategory("showShirt", animar);
     });
 
     //show hoddie
     showHoddie.addEventListener("click", () => {
-        animar = true;
-        showHoddie.classList.add('active_nav')
 
-        showAll.classList.remove("active_nav")
-        showShirt.classList.remove("active_nav")
-        showSweater.classList.remove("active_nav")
+        animar = true;
+        showHoddie.classList.add('active_nav');
+        showAll.classList.remove("active_nav");
+        showShirt.classList.remove("active_nav");
+        showSweater.classList.remove("active_nav");
 
         showDocumentForCategory("showHoddie", animar);
-        
+
     });
 
     //show sweater
     showSweater.addEventListener("click", () => {
-        animar = true;
-        showSweater.classList.add('active_nav')
 
-        showAll.classList.remove("active_nav")
-        showShirt.classList.remove("active_nav")
-        showHoddie.classList.remove("active_nav")
+        animar = true;
+        showSweater.classList.add('active_nav');
+        showAll.classList.remove("active_nav");
+        showShirt.classList.remove("active_nav");
+        showHoddie.classList.remove("active_nav");
 
         showDocumentForCategory("showSweater", animar);
-        
+
     });
 
     data.forEach(element => {
-        const { category, description, id, image, name, price, quantity } = element;
+        const { id, image, name, price, quantity } = element;
 
         const priceDouble = price.toFixed(2);
 
@@ -383,21 +362,17 @@ async function main(animar = true) {
                     <p>${name}</p>
                 </article>
     
-            </section>
-        `;
+            </section>`;
 
         htmlJoin += html;
 
     });
 
-
     mainContainer.innerHTML = htmlJoin;
-
 }
 
 
 function toggleColor() {
-
 
     const toggleNewColor = document.querySelector(".toggle__color");
 
@@ -414,16 +389,17 @@ function openShopping() {
 
     shopping.addEventListener("click", () => {
         const open = document.querySelector(".card__of-shopping");
-        open.classList.toggle("card__shopping-open")
+        open.classList.toggle("card__shopping-open");
     });
 
     closeShopping.addEventListener("click", () => {
         const open = document.querySelector(".card__of-shopping");
-        open.classList.toggle("card__shopping-open")
+        open.classList.toggle("card__shopping-open");
     });
 }
 
 function activeNavbar() {
+
     const navbar = document.querySelector(".link__navbar");
     const li = navbar.querySelectorAll("li");
 
@@ -442,8 +418,10 @@ function activeNavbar() {
     });
 
     li[1].addEventListener("click", () => {
+
         li[1].classList.add("active");
         li[0].classList.remove("active");
+
         liMenu[0].classList.remove("active");
         liMenu[1].classList.add("active");
     });
@@ -464,17 +442,15 @@ function activeNavbar() {
 
             li[1].classList.add("active");
             li[0].classList.remove("active");
+
             liMenu[0].classList.remove("active");
             liMenu[1].classList.add("active");
         }
     })
 
-
 }
 
 async function getProductToShopping() {
-
-
 
     const products = document.querySelector(".main__container");
 
@@ -496,8 +472,7 @@ async function getProductToShopping() {
 
             }
 
-
-            if (!dataZero.quantity) return alertify.alert('Lo sentimos', 'Producto Acabado', function () { alertify.success('Ok'); });
+            if (!dataZero.quantity) return alertify.alert('Lo sentimos', 'Producto Acabado', function () { alertify.success('Ok') });
 
             let shopping = null;
 
@@ -519,8 +494,9 @@ async function getProductToShopping() {
             }
 
             window.localStorage.setItem("carts", JSON.stringify(newCarts));
+
             showSorryShopping();
-            printCards(newCarts)
+            printCards(newCarts);
 
         }
 
@@ -549,55 +525,52 @@ function printCards(carts) {
             totalItem += amount;
 
             let chopHtml = `
-               <section class="shopping__container">
-   
-              
-               <article class="shopping__catalog">
-   
-                   <article class="card__catalogo">
-                       <article class="card__catalogo-img">
-                           <img src="${image}"
-                               alt="${name} ${id}">
-                       </article>
-   
-                       <article class="card__catalogo-body">
-                           <h1>
-                               ${name}
-                           </h1>
-                           <p>
-                               <span>Stock: ${quantity} | </span>
-                               $${price} Subtotal: $${total}
-                           </p>
-   
-                           <article class="card__catalogo-button">
-                               <button class="shopping__button-delete" id="${id}">
-                                   -
-                               </button>
-   
-                               <p>${amount} units</p>
-   
-                               <button class="shopping__button-add" id="${id}">
-                                   +
-                               </button>
-   
-                                   <box-icon class="shopping__button-allDelete" id="${id}" name='trash-alt'></box-icon>
-                              
-                           </article>
-   
-                       </article>
-   
-                   </article>
-   
-               </article>
-   
-           </section>
-               `;
+                    <section class="shopping__container">
+                    
+                    <article class="shopping__catalog">
+        
+                        <article class="card__catalogo">
+                            <article class="card__catalogo-img">
+                                <img src="${image}"
+                                    alt="${name} ${id}">
+                            </article>
+        
+                            <article class="card__catalogo-body">
+                                <h1>
+                                    ${name}
+                                </h1>
+                                <p>
+                                    <span>Stock: ${quantity} | </span>
+                                    $${price} Subtotal: $${total}
+                                </p>
+        
+                                <article class="card__catalogo-button">
+                                    <button class="shopping__button-delete" id="${id}">
+                                        -
+                                    </button>
+        
+                                    <p>${amount} units</p>
+        
+                                    <button class="shopping__button-add" id="${id}">
+                                        +
+                                    </button>
+        
+                                        <box-icon class="shopping__button-allDelete" id="${id}" name='trash-alt'></box-icon>
+                                    
+                                </article>
+        
+                            </article>
+        
+                        </article>
+        
+                    </article>
+        
+                </section>`
+                ;
 
             totalProductShopping += total;
-            shoppingHtml += chopHtml
+            shoppingHtml += chopHtml;
         }
-
-
 
         const chooseShopping = document.querySelector(".card__shopping-container");
 
@@ -623,17 +596,10 @@ function printCards(carts) {
         chooseShopping.innerHTML = "";
     }
 
-
-
 }
-
-
-
 
 function actionDeleteProducts(findProducto, id) {
     if (findProducto.amount === 1) {
-
-
 
         findProducto.amount--;
 
@@ -645,8 +611,7 @@ function actionDeleteProducts(findProducto, id) {
             }
         }
         clearBuy();
-        
-        printCards(newCarts)
+        printCards(newCarts);
         showSorryShopping();
 
     } else {
@@ -669,12 +634,13 @@ function actionDeleteProducts(findProducto, id) {
     window.localStorage.setItem("carts", JSON.stringify(newCarts));
     showSorryShopping();
 }
-function deteleProducts() {
 
+function deteleProducts() {
 
     const container = document.querySelector(".card__shopping-container");
 
     container.addEventListener("click", (e) => {
+
         if (e.target.classList.contains("shopping__button-delete")) {
 
             const id = Number(e.target.id);
@@ -693,11 +659,14 @@ function deteleProducts() {
             //procedemos a reducir la cantidad de amount
 
             if (findProducto.amount === 1) {
+
                 alertify.confirm('Warning', 'Desea eliminar este producto',
 
-                    function () { alertify.success('Eliminado 😠😠 '); actionDeleteProducts(findProducto, id) }
-
-                    , function () { alertify.error('No eliminado 😁😀') })
+                    function () {
+                        alertify.success('Eliminado 😠😠 ');
+                        actionDeleteProducts(findProducto, id);
+                    }
+                    , function () { alertify.error('No eliminado 😁😀') });
 
 
                 return;
@@ -708,26 +677,24 @@ function deteleProducts() {
 
         }
     });
-
-
-
 }
-//version 0.8
+
+
 function addProducts() {
 
     const container = document.querySelector(".card__shopping-container");
 
     container.addEventListener("click", (e) => {
+
         if (e.target.classList.contains("shopping__button-add")) {
 
-            
             const id = Number(e.target.id);
 
             for (const element in newCarts) {
 
                 if (newCarts[element].id === id) {
-                   
-                    if (newCarts[element].amount === newCarts[element].quantity) return alertify.alert('Lo sentimos', 'No hay mas producto en bodega', function () { alertify.success('Ok'); });;
+
+                    if (newCarts[element].amount === newCarts[element].quantity) return alertify.alert('Lo sentimos', 'No hay mas producto en bodega', function () { alertify.success('Ok') });
 
                     newCarts[element].amount++;
 
@@ -735,10 +702,7 @@ function addProducts() {
 
             }
             showSorryShopping();
-            printCards(newCarts)
-
-
-
+            printCards(newCarts);
         }
 
     });
@@ -746,8 +710,8 @@ function addProducts() {
 }
 
 const eventoEleminar = (e) => {
-    const id = Number(e.target.id);
 
+    const id = Number(e.target.id);
 
     for (const element in newCarts) {
 
@@ -757,12 +721,12 @@ const eventoEleminar = (e) => {
     }
 
     clearBuy();
-    
     printCards(newCarts);
 
     window.localStorage.setItem("carts", JSON.stringify(newCarts));
     showSorryShopping();
 }
+
 function deleteSelectProduct() {
 
     const container = document.querySelector(".card__shopping-container");
@@ -770,14 +734,18 @@ function deleteSelectProduct() {
 
         if (e.target.classList.contains("shopping__button-allDelete")) {
 
-            alertify.confirm('Warning', 'Desea eliminar este producto', function () { alertify.success('Eliminado 😠😠 '); eventoEleminar(e) }
-                , function () { alertify.error('No eliminado 😁😀') })
+            alertify.confirm('Warning', 'Desea eliminar este producto',
+
+                function () {
+                    alertify.success('Eliminado 😠😠 ');
+                    eventoEleminar(e);
+
+                }, function () { alertify.error('No eliminado 😁😀') });
         }
 
     });
 
 }
-
 
 const acctionBoy = () => {
     const currentProducts = [];
@@ -785,7 +753,7 @@ const acctionBoy = () => {
     let showCategory = null;
 
     for (const product of db) {
-        const productCarts = newCarts[product.id]
+        const productCarts = newCarts[product.id];
 
         if (product.id === productCarts?.id) {
 
@@ -794,26 +762,27 @@ const acctionBoy = () => {
                     ...product,
                     quantity: product.quantity - productCarts.amount
                 }
-            )
+            );
             showCategory = product.category;
         } else {
 
-            currentProducts.push(product)
+            currentProducts.push(product);
         }
     }
 
     db = currentProducts;
+
     newCarts = {};
 
-    window.localStorage.setItem("products", JSON.stringify(db))
-    window.localStorage.setItem("carts", JSON.stringify(newCarts))
+    window.localStorage.setItem("products", JSON.stringify(db));
+    window.localStorage.setItem("carts", JSON.stringify(newCarts));
 
     showCategory = showCategory.split("")[0].toUpperCase() + showCategory.slice(1, showCategory.length);
 
-    showDocumentForCategory( `show${showCategory}`, false);
+    showDocumentForCategory(`show${showCategory}`, false);
     showSorryShopping();
     clearBuy();
-    printCards(newCarts)
+    printCards(newCarts);
 }
 
 const comprar = () => {
@@ -827,7 +796,7 @@ const comprar = () => {
 
         alertify.confirm("Warning", "Desea comprar este producto 🙂🙂 ",
             () => { alertify.success("Compra realizada 😁😀"); acctionBoy() },
-            () => { alertify.error("cancelado"); console.log("cancelado 😠😠") })
+            () => { alertify.error("cancelado"); console.log("cancelado 😠😠") });
 
     });
 }
@@ -835,7 +804,7 @@ const comprar = () => {
 const clearBuy = () => {
 
     const buyItem = document.querySelector(".shopping__body-item");
-    const buyPrice = document.querySelector(".shopping__body-price")
+    const buyPrice = document.querySelector(".shopping__body-price");
     const buyTotal = document.querySelector(".total__shopping");
     const buyTotalTwo = document.querySelector(".total__shopping-menu");
 
@@ -854,11 +823,11 @@ const closeMenuNabvar = () => {
 
 
     menuOne.addEventListener("click", () => {
-        menuClose.classList.toggle("close")
+        menuClose.classList.toggle("close");
     });
 
     menuTwo.addEventListener("click", () => {
-        menuClose.classList.toggle("close")
+        menuClose.classList.toggle("close");
     })
 
 };
@@ -873,14 +842,14 @@ const closeMenuShopping = () => {
     header.addEventListener("click", () => {
 
         if (menuShopping.classList.contains("card__shopping-open")) {
-            menuShopping.classList.toggle("card__shopping-open")
+            menuShopping.classList.toggle("card__shopping-open");
         }
 
     });
 
     main.addEventListener("click", () => {
         if (menuShopping.classList.contains("card__shopping-open")) {
-            menuShopping.classList.toggle("card__shopping-open")
+            menuShopping.classList.toggle("card__shopping-open");
         }
     });
 
@@ -890,25 +859,23 @@ const showSorryShopping = () => {
 
     const datas = JSON.parse(window.localStorage.getItem("carts")) || {};
     const empy = document.querySelector(".error");
-       
-    if(!Object.keys(datas).length){
-        empy.style.display = "flex"
-        
-    }else{
-        empy.style.display = "none"
-        
+
+    if (!Object.keys(datas).length) {
+        empy.style.display = "flex";
+
+    } else {
+        empy.style.display = "none";
     }
 }
 
 activeNavbar();
 navb();
 menuBar();
-
 toggleColor();
 openShopping();
 main();
 getProductToShopping();
-printCards(newCarts)
+printCards(newCarts);
 comprar();
 deteleProducts();
 addProducts();

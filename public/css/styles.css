@@ -831,12 +831,19 @@ footer>article ul>li:hover::after {
 }
 
 .catalog__close {
-    width: 100%;
+    width: max-content;
+    position: absolute;
+    top: 0;
+    right: 1rem;
     text-align: end;
     padding-right: 1rem;
     font-size: 2rem;
     cursor: pointer;
-
+    z-index: 9999;
+    transition: color 0.3s ease-in-out;
+}
+.catalog__close:hover{
+    color: var(--firtsColor);
 }
 
 .card__shopping-container {
