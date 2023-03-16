@@ -1,8 +1,29 @@
 
 import { loadWindows } from './loaderScript.js'
 
-let db = JSON.parse(window.localStorage.getItem("products")) || getData();
+
+
+ let db = null;
 let newCarts = JSON.parse(window.localStorage.getItem("carts")) || {};
+
+async function getData() {
+
+    try {
+
+        const data = await fetch("https://ecommercebackend.fundamentos-29.repl.co/")
+
+        const res = await data.json();
+
+        window.localStorage.setItem("products", JSON.stringify(res));
+
+        db = JSON.parse(window.localStorage.getItem("products")) || res;
+
+        return res;
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 function navb() {
     //navbar
@@ -92,23 +113,6 @@ function menuBar() {
 }
 
 
-async function getData() {
-
-    try {
-
-        const data = await fetch("https://ecommercebackend.fundamentos-29.repl.co/")
-
-        const res = await data.json();
-
-        window.localStorage.setItem("products", JSON.stringify(res));
-
-        return res;
-
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 const showDocumentForCategory = async (elements, animar) => {
     const mainContainer = document.querySelector(".main__container");
 
@@ -143,7 +147,7 @@ const showDocumentForCategory = async (elements, animar) => {
 
                                 <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
                         `<span class="sold__out">sold out</span>`}</p>
-                                <p>${name}</p>
+                                <p class="show__modal">${name}</p>
                             </article>
                     
                         </section>`;
@@ -179,7 +183,7 @@ const showDocumentForCategory = async (elements, animar) => {
 
                                 <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
                             `<span class="sold__out">sold out</span>`}</p>
-                                <p>${name}</p>
+                                <p class="show__modal">${name}</p>
                             </article>
                     
                         </section>`;
@@ -218,7 +222,7 @@ const showDocumentForCategory = async (elements, animar) => {
 
                                 <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
                             `<span class="sold__out">sold out</span>`}</p>
-                                <p>${name}</p>
+                                <p class="show__modal">${name}</p>
                             </article>
                     
                         </section>`;
@@ -255,7 +259,7 @@ const showDocumentForCategory = async (elements, animar) => {
 
                                 <p> $ ${priceDouble} ${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
                             `<span class="sold__out">sold out</span>`}</p>
-                                <p>${name}</p>
+                                <p class="show__modal">${name}</p>
                             </article>
                     
                         </section>`;
@@ -359,7 +363,7 @@ async function main(animar = true) {
                 : `<span class="sold__out" >sold out</span>`
             }</p>
                     
-                    <p>${name}</p>
+                    <p class="show__modal">${name}</p>
                 </article>
     
             </section>`;
@@ -868,6 +872,121 @@ const showSorryShopping = () => {
     }
 }
 
+function closeModal(){
+    const modal = document.querySelector(".modal");
+
+    if(modal){
+        modal.addEventListener("click", (e)=>{
+            if(e.target.classList.contains("modal__close-show")){
+
+                if(modal.classList.contains("animate__zoomInDown")) modal.classList.remove("animate__zoomInDown");
+
+                                modal.classList.add("animate__flipOutY")
+
+                setTimeout(()=>{
+                     const modalContainer = document.querySelector(".modal__container");
+                modalContainer.classList.add("modal__hidden");
+                }, 1000);
+                
+            }  
+            
+            if(e.target.classList.contains("btn__add")){
+                const id = Number(e.target.id);
+
+                const pd = db.find(element => element.id == id);
+
+                const array = Object.keys(newCarts).length;
+                
+
+                if(array){
+                    for(const ele in newCarts){
+
+                        if(newCarts[ele].id === id){
+
+                            if(newCarts[ele].amount === pd.quantity)
+                                return alertify.alert('Lo sentimos', 'No hay mas en bodega', function () { alertify.success('Ok'); });
+
+                            newCarts[ele].amount++;
+                        }
+
+                    }
+
+                }else{
+                    if(!pd.quantity) 
+                    return alertify.alert('Lo sentimos', 'No hay mas en bodega', function () { alertify.success('Ok'); });
+
+                    newCarts[id] = {...pd, amount:1};
+                }
+
+                localStorage.setItem("carts", JSON.stringify(newCarts));
+                               
+                showSorryShopping();
+                printCards(newCarts);
+            }
+            
+        })
+    }
+}
+
+function modalShow(){
+    
+    const conteiner = document.querySelector(".main__container");
+
+    const body = document.querySelector("#show__modal");
+
+    conteiner.addEventListener("click", (e)=>{
+        if(e.target.classList.contains("show__modal")){
+            const id = Number(e.target.parentNode.querySelector(".shop").id);
+
+            db = JSON.parse(localStorage.getItem("products"));
+
+            const {name, price, quantity, description, image} = db.find(element => element.id === id);
+
+            let modal = `
+                        <section class="modal__container">
+
+                        <section class="modal animate__animated animate__zoomInDown">
+                            <article class="modal__close">
+                                <span><i class='bx bxs-x-circle modal__close-show'></i></span>
+                            </article>
+                        
+                                <article class="modal__img">
+                                    <img class="mover" src="${image}" alt="">
+                                </article>
+                        
+                                <article class="modal__body">
+                                    <h2>${name}</h2>
+                                    <p>
+                                        ${description}
+                                    </p>
+                                    
+                                    <article class="modal__body-price">
+                                        <div>
+                                            <p>$${price}</p>
+                                            <button id="${id}" class="btn__add">
+                                                +
+                                            </button>
+                                        </div>
+                                        <p>${quantity ? `<span class="sold__nout">Stock ${quantity}</span>` :
+                                         `<span class="sold__out">sold out</span>`}</p>
+                                    </article>
+                                </article>
+                        </section>
+                    
+                    </section>
+             `;
+            
+
+             body.innerHTML = modal;
+            closeModal()
+        }
+    });
+
+    
+}
+
+
+
 activeNavbar();
 navb();
 menuBar();
@@ -884,3 +1003,4 @@ closeMenuNabvar();
 closeMenuShopping();
 showSorryShopping();
 loadWindows();
+modalShow()
